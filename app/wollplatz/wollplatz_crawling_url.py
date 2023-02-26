@@ -4,17 +4,6 @@ from typing import NamedTuple, List, Dict
 import re
 import json
 
-# URL = f"https://dynamic.sooqr.com/suggest/script/"
-# ACCOUNT_NUMBER = "SQ-119572-1"
-
-# products_to_crawling = [
-#     {"brand_name": "DMC", "product_name": "Natura XL"},
-#     {"brand_name": "Drops", "product_name": "Safran"},
-#     {"brand_name": "Drops", "product_name": "Baby Merino Mix"},
-#     {"brand_name": "Hahn", "product_name": "Alpacca Speciale"},
-#     {"brand_name": "Stylecraft", "product_name": "Special double knit"}
-# ]
-
 
 def get_search_url(start_url: str, brand_name: str, product_name: str) -> str:
     """

@@ -21,6 +21,9 @@ class WollBall(NamedTuple):
     compilation: str = None
     date: str = None
 
+    def __repr__(self):
+        return f"Marke: {self.brand}, Bezeichnung: {self.title}, Verfügbarkeit: {self.availability}, Price: {self.price}€, Nadelstärke: {self.needle_size} mm, Zusammenstellung: {self.compilation}"
+
 
 class WollplatzCrawler(Crawler):
     def __init__(self, url: str = URL):
@@ -59,5 +62,5 @@ class WollplatzCrawler(Crawler):
                                      needle_size.split()[0], compilation, datetime.now().strftime("%d-%m-%YT%H:%M"))
                 self._crawling_results.append(woll_ball)
             else:
-                print(f"{product['title']} is not found\n")
+                print(f"{product['title']} wurde nicht gefunden.")
         return self._crawling_results
