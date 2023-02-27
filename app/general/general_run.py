@@ -1,21 +1,11 @@
-from app.wollplatz.wollplatz_main import WollplatzMain, GeneralMain
+from app.wollplatz.wollplatz_main import WollplatzMain
+from app.general.own_data_types import CommandObject, CrawlerObject
 from app.general.general_crawler import Crawler
 from app.general.get_file_path import get_path
 import os
 import app.general.general_commands as commands
 from pathlib import Path
-from typing import Dict, NamedTuple
-
-
-class CrawlerObject(NamedTuple):
-    crawler_name: str = None
-    crawler_object: GeneralMain = None
-
-
-class CommandObject(NamedTuple):
-    command_description: str = None
-    command: object = None
-
+from typing import Dict
 
 ROOT_DIR = Path(__file__).parent.parent
 
@@ -28,9 +18,6 @@ def file_dir_path(crawler_name: str):
 def path_crawling_products(crawler_name: str):
     return get_path(file_dir_path(crawler_name), ["data_to_crawling.csv"])
 
-
-FILE_DIR = get_path(ROOT_DIR, ["wollplatz"])
-CSV_FILE_PATH = get_path(FILE_DIR, ["data_to_crawling.csv"])
 
 available_crawlers = {
     "1": CrawlerObject("wollplatz", WollplatzMain(path_crawling_products("wollplatz")))
@@ -61,7 +48,8 @@ class MainDialog:
                 wp_main = selected_crawler.crawler_object
                 results = wp_main.get_crawling_results()
                 if len(results) == 0:
-                    print(f"\nWir haben nichts gefunden. Ändern Sie Ihre Suchbegriffe oder probieren Sie einen anderen Crawler.\n{15 * '-'}")
+                    print(
+                        f"\nWir haben nichts gefunden. Ändern Sie Ihre Suchbegriffe oder probieren Sie einen anderen Crawler.\n{15 * '-'}")
                     continue
                 print(f"Wir haben {len(results)} Ergebnisse gefunden.")
                 # print(results)

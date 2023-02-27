@@ -1,28 +1,15 @@
 import requests
 from bs4 import BeautifulSoup
-from typing import NamedTuple, List, Dict
+from typing import List, Dict
 import re
 from app.wollplatz.wollplatz_crawling_url import wollplatz_product_url
 from app.general.general_crawler import Crawler
+from app.general.own_data_types import WollBall
 import json
 from datetime import datetime
 
-
 URL = f"https://dynamic.sooqr.com/suggest/script/"
 ACCOUNT_NUMBER = "SQ-119572-1"
-
-
-class WollBall(NamedTuple):
-    brand: str = None
-    title: str = None
-    availability: str = None
-    price: float = None
-    needle_size: str = None
-    compilation: str = None
-    date: str = None
-
-    def __repr__(self):
-        return f"Marke: {self.brand}, Bezeichnung: {self.title}, Verfügbarkeit: {self.availability}, Price: {self.price}€, Nadelstärke: {self.needle_size} mm, Zusammenstellung: {self.compilation}"
 
 
 class WollplatzCrawler(Crawler):
