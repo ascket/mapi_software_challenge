@@ -62,9 +62,9 @@ class WollplatzCrawler(Crawler):
                     availability = "Nicht lieferbar"
                 price = soup.find("div", class_="buy-price").select_one(".product-price-amount").text
                 specifications = self.__class__.get_table(soup)
-                brand = specifications.get("Marke")
-                needle_size = specifications.get("Nadelstärke")
-                compilation = specifications.get("Zusammenstellung")
+                brand = specifications.get("Marke", "Keine")
+                needle_size = specifications.get("Nadelstärke", "Keine")
+                compilation = specifications.get("Zusammenstellung", "Keine")
                 woll_ball = WollBall(brand, product_title, availability, float(price.replace(",", ".")),
                                      needle_size.split()[0], compilation, datetime.now().strftime("%d-%m-%YT%H:%M"))
                 self._crawling_results.append(woll_ball)

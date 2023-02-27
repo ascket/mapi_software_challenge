@@ -14,7 +14,7 @@ class TestOwnDataTypes:
             assert getattr(one_wollball, attr_name) == wollball_values.get(attr_name)
 
     def test_wallbal_repr(self, one_wollball):
-        assert one_wollball.__repr__() == "Marke: Example Brand, Bezeichnung: Example Product, Verfügbarkeit: Available, Price: 2.99€, Nadelstärke: 4 mm, Zusammenstellung: 100% Acryl"
+        assert one_wollball.__repr__() == "Marke: Example Brand, Bezeichnung: Example Product, Verfügbarkeit: Available, Price (€): 2.99, Nadelstärke (mm): 4, Zusammenstellung: 100% Acryl"
 
     def test_crawler_object(self, crawler_object, crawler_object_values):
         for attr_names in crawler_object_values:

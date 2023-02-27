@@ -17,7 +17,7 @@ class WollBall(NamedTuple):
     date: str = None
 
     def __repr__(self):
-        return f"Marke: {self.brand}, Bezeichnung: {self.title}, Verfügbarkeit: {self.availability}, Price: {self.price}€, Nadelstärke: {self.needle_size} mm, Zusammenstellung: {self.compilation}"
+        return f"Marke: {self.brand}, Bezeichnung: {self.title}, Verfügbarkeit: {self.availability}, Price (€): {self.price}, Nadelstärke (mm): {self.needle_size}, Zusammenstellung: {self.compilation}"
 
 
 class CrawlerObject(NamedTuple):
