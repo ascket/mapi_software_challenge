@@ -132,3 +132,4 @@ dmypy.json
 *.html
 training*.*
 results
+/app/wollplatz/data_to_crawling2.csv
