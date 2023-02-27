@@ -1,3 +1,5 @@
+"""General module to work with the console through the application interface"""
+
 from app.wollplatz.wollplatz_main import WollplatzMain
 from app.general.own_data_types import CommandObject, CrawlerObject
 from app.general.general_crawler import Crawler
@@ -15,13 +17,33 @@ def file_dir_path(crawler_name: str):
     return get_path(ROOT_DIR, list_)
 
 
-def path_crawling_products(crawler_name: str):
-    return get_path(file_dir_path(crawler_name), ["data_to_crawling.csv"])
+def path_crawling_products(crawler_name: str, file_name: str):
+    """
+    Returns the path to the file with products for crawling
+
+    Args:
+        crawler_name: Crawler name
+        file_name: Name of .csv-file with products
+
+    Returns:
+        Path to .csv-file with products to crawling
+
+    Raises:
+        FileNotFoundError if file is not exists
+    """
+    path_to_csv_with_products = get_path(file_dir_path(crawler_name), [file_name])
+    if not os.path.exists(path_to_csv_with_products):
+        raise FileNotFoundError(
+            f"A .csv-file with products for {crawler_name} crawler is not found. Put the file with crawling products in this folder: {file_dir_path(crawler_name)}")
+    return path_to_csv_with_products
 
 
+# Created crawlers that the user can interact with
 available_crawlers = {
-    "1": CrawlerObject("wollplatz", WollplatzMain(path_crawling_products("wollplatz")))
+    "1": CrawlerObject("wollplatz", WollplatzMain(path_crawling_products("wollplatz", "data_to_crawling.csv")))
 }
+
+# Commands available to the user
 available_commands = {
     "A": CommandObject("Ergebnisse anzeigen", commands.PrintResults()),
     "B": CommandObject("Ergebnisse als .csv speichern", commands.SaveCsvCommand()),
@@ -32,7 +54,10 @@ available_commands = {
 
 
 class MainDialog:
-    def main_dialog(self):
+    def main_dialog(self) -> None:
+        """
+        The main dialog that the user sees in the console
+        """
         while True:
             print(f"Verfügbare Crawlers:\n{self.get_crawlers_number(available_crawlers)}")
             crawler_number = input("Geben Sie Ihr Crawler Nummer oder 'Q' zum Beenden: ")
@@ -52,7 +77,6 @@ class MainDialog:
                         f"\nWir haben nichts gefunden. Ändern Sie Ihre Suchbegriffe oder probieren Sie einen anderen Crawler.\n{15 * '-'}")
                     continue
                 print(f"Wir haben {len(results)} Ergebnisse gefunden.")
-                # print(results)
                 while True:
                     print("Was wollen Sie als Nächstes tun: ")
                     for key, value in available_commands.items():

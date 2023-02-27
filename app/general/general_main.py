@@ -1,4 +1,4 @@
-"""General method to run a crawler job"""
+"""General module to run a crawler job"""
 
 import csv, os
 from typing import List

@@ -1,3 +1,5 @@
+"""It saves information with crawling results in the .csv format"""
+
 import csv, os
 from typing import List, Dict
 from app.general.get_file_path import get_path
@@ -19,7 +21,6 @@ class CsvSaver:
             result_writer.writerow(header)
             for data in data_to_save:
                 result_writer.writerow(data._asdict().values())
-
 
     def get_path_file_to_save(self):
         return self.path_file_to_save

@@ -1,3 +1,5 @@
+"""Get data from the database"""
+
 from app.general.get_file_path import get_path
 from pathlib import Path
 import sqlite3, os

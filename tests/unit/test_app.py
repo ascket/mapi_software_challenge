@@ -74,7 +74,6 @@ class TestCrawler:
         cr = Crawler(valid_url)
         assert cr.url == valid_url
 
-
     @pytest.mark.parametrize(
         "invalid_url",
         ["https//muster.com", "http:/muster.com", "ww.muster.com", "muster.com", "htpp://muster.com"]

@@ -1,3 +1,5 @@
+"""Crawler for the wollplatz.de store. The crawler gets information from the store search results"""
+
 import requests
 from bs4 import BeautifulSoup
 from typing import List, Dict
@@ -17,7 +19,16 @@ class WollplatzCrawler(Crawler):
         super().__init__(url)
 
     @staticmethod
-    def get_table(soup_object):
+    def get_table(soup_object) -> Dict[str, str]:
+        """
+        Finds a table of 'Spezifikationen' section
+
+        Args:
+            soup_object: Object type BeautifulSoup
+
+        Returns:
+            Dictionary with results
+        """
         table_results = {}
         table = soup_object.find("div", id="pdetailTableSpecs").select_one("table").select("tr")
         for td in table:
@@ -27,7 +38,16 @@ class WollplatzCrawler(Crawler):
             table_results[specification] = info
         return table_results
 
-    def main_crawler(self, products: List[Dict[str, str]]):
+    def main_crawler(self, products: List[Dict[str, str]]) -> List[WollBall]:
+        """
+        Method for collecting information from wollplatz.de
+
+        Args:
+            products: List of crawling products
+
+        Returns:
+            List with crawling results. The results are a WollBall object
+        """
         products = wollplatz_product_url(products, self.url, ACCOUNT_NUMBER)
         for product in products:
             if product["href"] is not None:

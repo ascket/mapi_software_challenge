@@ -1,8 +1,13 @@
+"""Own data types required for the application to work. Designed for ease of use with information"""
+
 from typing import NamedTuple
 from app.general.general_main import GeneralMain
 
 
 class WollBall(NamedTuple):
+    """
+    Type for presenting information with scrolling results for the wollplatz-crawler
+    """
     brand: str = None
     title: str = None
     availability: str = None
@@ -16,10 +21,16 @@ class WollBall(NamedTuple):
 
 
 class CrawlerObject(NamedTuple):
+    """
+    Type to represent information about the crawler
+    """
     crawler_name: str = None
     crawler_object: GeneralMain = None
 
 
 class CommandObject(NamedTuple):
+    """
+    Type to represent command information
+    """
     command_description: str = None
     command: object = None
