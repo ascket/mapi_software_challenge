@@ -127,3 +127,9 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+/.idea
+*.db
+*.html
+training*.*
+results
+/app/wollplatz/data_to_crawling2.csv
